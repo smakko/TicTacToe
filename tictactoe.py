@@ -30,7 +30,7 @@ class Board(Frame):
 		print('Free buttons:',self.free_buttons)
 
 	def rules(self,*args):
-		def scan():
+		def scan(): ## fix bot column
 			#ROWS
 			for i in range(0,9,3):
 				if self.buttons[i]['text']==self.buttons[i+1]['text']==self.buttons[i+2]['text']=='X':
@@ -44,10 +44,16 @@ class Board(Frame):
 				if self.buttons[i]['text']==self.buttons[i+3]['text']==self.buttons[i+6]['text']=='O':
 					return 'bot'
 			#DIAGONALS
-			if self.buttons[0]['text']==self.buttons[4]['text']==self.buttons[8]['text']=='X':
-				return 'usr'
-			if self.buttons[2]['text']==self.buttons[4]['text']==self.buttons[6]['text']=='O':
-				return 'bot'
+			if self.buttons[0]['text']==self.buttons[4]['text']==self.buttons[8]['text']:
+				if self.buttons[0]['text']=='X':
+					return 'usr'
+				elif self.buttons[0]['text']=='O':
+					return 'bot'
+			if self.buttons[2]['text']==self.buttons[4]['text']==self.buttons[6]['text']:
+				if self.buttons[2]['text']=='X':
+					return 'usr'
+				elif self.buttons[2]['text']=='O':
+					return 'bot'
 			return None
 
 		button_id=args[0]
