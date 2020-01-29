@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 import random
+import os
 
 class Board(Frame):
 	def __init__(self,master,mode,*args,**kwargs):
@@ -169,8 +170,7 @@ class App(Frame):
 		self.lobby=Lobby(self)
 		self.lobby.pack(fill='both',expand=True)
 
-	def select_mode(self,*args):
-		mode=args[0]
+	def select_mode(self,mode):
 		self.lobby.destroy()
 		self.disp=Display(self,mode=mode)
 		self.disp.pack(side='top',fill='x',expand=True)
@@ -187,14 +187,17 @@ class App(Frame):
 		master=self.master
 		master.title('Tic Tac Toe')
 		master.option_add("*Background",'white')
-
 		master.option_add('*Label.Font',('Lucida Sans',15,'bold'))
-		# master.iconbitmap('assets/icon.ico')
-		# master.geometry('300x330')
+		master.iconbitmap('assets/icon.ico')
 		master.resizable(False,False)
 
 
 if __name__ == '__main__':
+
+	#source_location=os.path.abspath(__file__)
+	source_dir=os.path.dirname(__file__)
+	os.chdir(source_dir)
+
 	master=Tk()
 	App(master).pack(side='top',expand=True,fill='both')
 	master.mainloop()
